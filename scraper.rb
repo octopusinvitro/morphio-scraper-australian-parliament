@@ -7,8 +7,9 @@ require_relative 'lib/page_scraper'
 
 url   = 'https://morph.io/documentation/examples/australian_members_of_parliament'
 
-scraper_core = PageScraper.new(Mechanize.new.get(url))
-p scraper_core.all_members
+page_scraper = PageScraper.new
+page = Mechanize.new.get(url)
+p page_scraper.all_members(page)
 
 #
 # # Write out to the sqlite database using scraperwiki library

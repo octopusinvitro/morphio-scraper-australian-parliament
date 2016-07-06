@@ -1,14 +1,10 @@
 class PageScraper
 
-  def initialize(page)
-    @page = page
+  def member_at(index, page)
+    all_members(page)[index]
   end
 
-  def member_at(index)
-    all_members[index]
-  end
-
-  def all_members
+  def all_members(page)
     page.at('.search-filter-results').search('li').map { |li|
       member_structure(li)
     }

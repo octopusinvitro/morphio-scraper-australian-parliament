@@ -3,25 +3,26 @@ require 'page_scraper'
 
 describe("PageScraper") do
 
-  let(:scraper_core) {PageScraper.new(Mechanize.new.get("http://localhost:4000"))}
+  let(:page_scraper) {PageScraper.new}
+  let(:page)         {Mechanize.new.get(TEST_URL)}
 
   it "returns the title of a member" do
-    expect(scraper_core.member_at(0)[:title]).to eq("The Hon Ian Macfarlane MP")
+    expect(page_scraper.member_at(0, page)[:title]).to eq("The Hon Ian Macfarlane MP")
   end
 
   it "returns the electorate of a member" do
-    expect(scraper_core.member_at(0)[:electorate]).to eq("Groom, Queensland")
+    expect(page_scraper.member_at(0, page)[:electorate]).to eq("Groom, Queensland")
   end
 
   it "returns the party of a member" do
-    expect(scraper_core.member_at(0)[:party]).to eq("Liberal Party of Australia")
+    expect(page_scraper.member_at(0, page)[:party]).to eq("Liberal Party of Australia")
   end
 
   it "returns the url of a member" do
-    expect(scraper_core.member_at(0)[:url]).to eq("http://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=WN6")
+    expect(page_scraper.member_at(0, page)[:url]).to eq("http://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=WN6")
   end
 
   it "reads all the members" do
-    expect(scraper_core.all_members.size).to eq(50)
+    expect(page_scraper.all_members(page).size).to eq(50)
   end
 end
