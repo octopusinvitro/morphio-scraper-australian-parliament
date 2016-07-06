@@ -3,19 +3,12 @@
 
 require 'scraperwiki'
 require 'mechanize'
+require_relative 'lib/scraper_core'
 
-agent = Mechanize.new
 url   = 'https://morph.io/documentation/examples/australian_members_of_parliament'
-page  = agent.get(url)
 
-member = {
-  title:      page.at('.title').at('a').inner_text,
-  electorate: page.search('dd')[0].inner_text << ", " <<
-              page.search('dd')[1].inner_text,
-  url:        page.at('.title a').attr('href')
-}
-
-p member
+scraper_core = ScraperCore.new(Mechanize.new.get(url))
+p scraper_core.member
 
 #
 # # Write out to the sqlite database using scraperwiki library
