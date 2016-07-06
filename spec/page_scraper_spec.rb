@@ -1,9 +1,9 @@
 require 'mechanize'
-require 'scraper_core'
+require 'page_scraper'
 
-describe("ScraperCore") do
+describe("PageScraper") do
 
-  let(:scraper_core) {ScraperCore.new(Mechanize.new.get("http://localhost:4000"))}
+  let(:scraper_core) {PageScraper.new(Mechanize.new.get("http://localhost:4000"))}
 
   it "returns the title of a member" do
     expect(scraper_core.member_at(0)[:title]).to eq("The Hon Ian Macfarlane MP")

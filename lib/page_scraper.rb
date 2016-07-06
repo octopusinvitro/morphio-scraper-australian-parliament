@@ -1,4 +1,4 @@
-class ScraperCore
+class PageScraper
 
   def initialize(page)
     @page = page

@@ -3,11 +3,11 @@
 
 require 'scraperwiki'
 require 'mechanize'
-require_relative 'lib/scraper_core'
+require_relative 'lib/page_scraper'
 
 url   = 'https://morph.io/documentation/examples/australian_members_of_parliament'
 
-scraper_core = ScraperCore.new(Mechanize.new.get(url))
+scraper_core = PageScraper.new(Mechanize.new.get(url))
 p scraper_core.all_members
 
 #
