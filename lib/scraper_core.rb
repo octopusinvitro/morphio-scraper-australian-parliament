@@ -4,17 +4,27 @@ class ScraperCore
     @page = page
   end
 
-  def member
-    {
-      title:      page.at('.title').at('a').inner_text,
-      electorate: page.search('dd')[0].inner_text << ", " <<
-                  page.search('dd')[1].inner_text,
-      url:        page.at('.title a').attr('href')
+  def member_at(index)
+    all_members[index]
+  end
+
+  def all_members
+    page.at('.search-filter-results').search('li').map { |li|
+      member_structure(li)
     }
   end
 
   private
 
   attr_reader :page
+
+  def member_structure(li)
+    {
+      title:      li.at('.title a').inner_text,
+      electorate: li.search('dd')[0].inner_text,
+      party:      li.search('dd')[1].inner_text,
+      url:        li.at('.title a').attr('href')
+    }
+  end
 
 end
