@@ -8,3 +8,9 @@ ruby "2.3.0"
 
 gem "scraperwiki", git: "https://github.com/openaustralia/scraperwiki-ruby.git", branch: "morph_defaults"
 gem "mechanize"
+
+group :test do
+  gem 'rake'
+  gem 'rspec',  '>=3.4.0'
+  gem 'pry'
+end
