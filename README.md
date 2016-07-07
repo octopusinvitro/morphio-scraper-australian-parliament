@@ -6,7 +6,21 @@
 
 This is a scraper that runs on [Morph](https://morph.io). To get started [see the documentation](https://morph.io/documentation)
 
-This version follows [this tutorial](https://www.openaustraliafoundation.org.au/tag/ruby-web-scraping-tutorial-on-morph-io/), **but using tests instead**.
+This version follows [this tutorial](https://www.openaustraliafoundation.org.au/tag/ruby-web-scraping-tutorial-on-morph-io/), **but using tests instead**. It is a template for a Ruby scraper on morph.io (https://morph.io)
+including some code snippets below that you should find helpful.
+
+You don't have to do things with the Mechanize or ScraperWiki libraries.
+You can use whatever gems you want: [https://morph.io/documentation/ruby](https://morph.io/documentation/ruby).
+All that matters is that your final data is written to an SQLite database
+called "data.sqlite" in the current working directory which has at least a table
+called "data".
+
+Scrapers on morph.io use [the ScraperWiki library](https://github.com/openaustralia/scraperwiki-ruby/tree/morph_defaults) to save data to a SQLite database. This is how all data in morph.io is stored. Each scraper page provides options to download the SQLite database, a CSV file of each table, or access the data via [an API](https://morph.io/documentation/api).
+
+
+## Getting started
+
+[Create a new scraper on morph.io](https://morph.io/scrapers/new). This will create a new repository in your GitHub account. Git clone it in your computer and update it with your code.
 
 
 ## How to use this project
@@ -72,6 +86,11 @@ In the tests, the test url points to a page served by a local server that has a 
 ```bash
 $ bundle exec ruby scraper.rb
 ```
+
+
+## To run the scraper on morph.io
+
+When you are finished, push your changes up to your remote GitHub repository and go to [https://morph.io](https://morph.io). Find your scraper and click "Run scraper". You can set your scraper to auto-run daily on your scraper's settings page so it's stays up to date with any changes
 
 
 ## License
