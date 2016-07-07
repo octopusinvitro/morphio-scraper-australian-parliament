@@ -1,17 +1,20 @@
 # This is a template for a Ruby scraper on morph.io (https://morph.io)
 # including some code snippets below that you should find helpful
 
-require 'scraperwiki'
-require 'mechanize'
+require "scraperwiki"
+require "mechanize"
 
-require_relative 'lib/page_fetcher'
-require_relative 'lib/page_scraper'
+require_relative "lib/page_fetcher"
+require_relative "lib/page_scraper"
+require_relative "lib/paginator"
 
 url   = 'https://morph.io/documentation/examples/australian_members_of_parliament'
 
-p scraper.all_members(fetcher.page_at(url))
-fetcher = PageFetcher.new
+fetcher   = PageFetcher.new
 scraper   = PageScraper.new
+paginator = Paginator.new(fetcher, scraper)
+
+p paginator.members_from_pages(url, 3)
 
 #
 # # Write out to the sqlite database using scraperwiki library

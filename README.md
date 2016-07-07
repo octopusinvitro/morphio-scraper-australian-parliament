@@ -2,7 +2,7 @@
 [![build status](https://gitlab.com/me-stevens/morphio-scraper-australian-parliament/badges/master/build.svg)](https://gitlab.com/me-stevens/morphio-scraper-australian-parliament/commits/master)
 
 
-# Morph.io scraper :: Australian parlamient
+# Morph.io scraper :: Australian parliament
 
 This is a scraper that runs on [Morph](https://morph.io). To get started [see the documentation](https://morph.io/documentation)
 
