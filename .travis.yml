@@ -1,1 +1,7 @@
-language: ruby 
+language: ruby
+
+before_script:
+  - ruby -run -e httpd -- -p 4000 spec/fixtures &
+
+script:
+  - bundle exec rspec

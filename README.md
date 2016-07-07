@@ -51,7 +51,13 @@ $ bundle exec rake
 
 ### To run the tests
 
-Serve the fixtures with your favorite server at localhost and then:
+Serve the fixtures with your favorite server at localhost, for example:
+
+```bash
+$ ruby -run -e httpd -- -p 4000 spec/fixtures
+```
+
+and then run the tests:
 
 ```bash
 $ bundle exec rspec

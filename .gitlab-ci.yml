@@ -3,8 +3,8 @@ image: ruby:2.3.0
 before_script:
   - gem install bundler --no-ri --no-rdoc
   - bundle install --jobs $(nproc)  "${FLAGS[@]}"
-  - bundle exec rake
 
 rspec:
   script:
+    - ruby -run -e httpd -- -p 4000 spec/fixtures &
     - bundle exec rspec
