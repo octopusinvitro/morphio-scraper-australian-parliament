@@ -1,5 +1,3 @@
-require "page_fetcher"
-
 describe "PageFetcher" do
 
   it "returns a page" do

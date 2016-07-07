@@ -1,5 +1,3 @@
-require "mechanize"
-
 class PageFetcher
 
   def initialize(agent = Mechanize.new)

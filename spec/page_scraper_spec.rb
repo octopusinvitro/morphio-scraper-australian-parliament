@@ -1,6 +1,3 @@
-require 'mechanize'
-require 'page_scraper'
-
 describe("PageScraper") do
 
   let(:page_scraper) {PageScraper.new}
