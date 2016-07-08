@@ -2,24 +2,27 @@
 
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
-# require "scraperwiki"
 require "mechanize"
+require "scraperwiki"
 
 require "page_fetcher"
 require "page_scraper"
 require "paginator"
+require "persistor"
 
 url       = "https://morph.io/documentation/examples/australian_members_of_parliament"
 fetcher   = PageFetcher.new
 scraper   = PageScraper.new
 paginator = Paginator.new(fetcher, scraper)
 
-p paginator.members_from_pages(url, 3)
-# p paginator.members_from_pages(url, 3).size
+# Scrape
+members   = paginator.members_from_pages(url, 3)
+p members
 
-# # Write out to the sqlite database using scraperwiki library
-# ScraperWiki.save_sqlite(["name"], {"name" => "susan", "occupation" => "software developer"})
-#
+# Persist
+persistor = Persistor.new
+persistor.save_all(members)
+
 # # An arbitrary query against the database
 # ScraperWiki.select("* from data where 'name'='peter'")
 #

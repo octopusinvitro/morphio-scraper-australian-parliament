@@ -79,16 +79,58 @@ $ bundle exec rspec
 
 In the tests, the test url points to a page served by a local server that has a pagination of three pages with 50 members in each page.
 
+**Caveat:** Because the `ScraperWiki` gem doesn't allow to choose where to save the database file or how to name it, it will always produce a `data.sqlite` file in the root directory when the tests are run and when the production code is run. I have to find a way to mock the `ScraperWiki` module, but for now I am using the ugly workaround:
+
+```ruby
+after(:all) do
+  `rm data.sqlite`
+end
+```
+
+and renaming the database file after running the production code:
+
+```ruby
+p `bin/app && mv data.sqlite members.sqlite`
+```
+
+This is ugly and doesn't really solve the problem, so it has to dissappear.
+
 
 ### To run the app
-
 
 ```bash
 $ bundle exec ruby scraper.rb
 ```
 
 
-## To run the scraper on morph.io
+### To open the created database in SQLite
+
+First make sure you have [SQLite](https://www.sqlite.org/index.html) installed in your system:
+
+```bash
+$ sqlite3
+SQLite version 3.8.2 2013-12-06 14:53:30
+Enter ".help" for instructions
+Enter SQL statements terminated with a ";"
+sqlite> .exit
+$
+```
+
+or [install it for your OS](http://www.tutorialspoint.com/sqlite/sqlite_installation.htm). Then, open the file and type some SQL statements:
+
+```bash
+$ sqlite3 members.sqlite
+SQLite version 3.8.2 2013-12-06 14:53:30
+Enter ".help" for instructions
+Enter SQL statements terminated with a ";"
+sqlite> SELECT count(*) FROM data;
+150
+sqlite> SELECT * FROM data;
+...
+```
+
+
+### To run the scraper on morph.io
 
 When you are finished, push your changes up to your remote GitHub repository and go to [https://morph.io](https://morph.io). Find your scraper and click "Run scraper". You can set your scraper to auto-run daily on your scraper's settings page so it's stays up to date with any changes
 
