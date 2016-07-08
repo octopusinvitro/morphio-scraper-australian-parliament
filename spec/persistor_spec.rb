@@ -12,20 +12,20 @@ describe "Persistor" do
   end
 
   it "saves the right structure" do
-    persistor.save_member(member("title"))
+    persistor.save_member(member)
     metadata = db.prepare(all_members)
     expect(metadata.columns).to eq(member_keys)
     expect(metadata.column_count).to eq(member_keys.size)
   end
 
   it "saves one member" do
-    persistor.save_member(member("title"))
+    persistor.save_member(member)
     expect_size_to_eq(1)
   end
 
   it "doesn't add a member if it has the same id as other" do
-    persistor.save_member(member("title"))
-    persistor.save_member(member("title"))
+    persistor.save_member(member)
+    persistor.save_member(member)
     expect_size_to_eq(1)
   end
 
@@ -34,9 +34,14 @@ describe "Persistor" do
     expect_size_to_eq(50)
   end
 
-  def member(title)
+  it "selects all with a certain attribute" do
+    persistor.save_all(members)
+    expect(persistor.all_with("party", "The Nationals").size).to eq(4)
+  end
+
+  def member
     {
-      title:      title,
+      title:      "title",
       electorate: "electorate",
       party:      "party",
       url:        "url"
@@ -44,7 +49,7 @@ describe "Persistor" do
   end
 
   def member_keys
-    member("title").keys.map {|key| key.to_s}
+    member.keys.map {|key| key.to_s}
   end
 
   def members

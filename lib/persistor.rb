@@ -14,6 +14,10 @@ class Persistor
     }
   end
 
+  def all_with(key, value)
+    wiki.select("* from data where #{key}='#{value}'")
+  end
+
   private
 
   attr_reader :wiki
