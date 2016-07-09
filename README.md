@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/octopusinvitro/morphio-scraper-australian-parliament.svg?branch=master)](https://travis-ci.org/octopusinvitro/morphio-scraper-australian-parliament)
 [![build status](https://gitlab.com/me-stevens/morphio-scraper-australian-parliament/badges/master/build.svg)](https://gitlab.com/me-stevens/morphio-scraper-australian-parliament/commits/master)
-
+[![Coverage Status](https://coveralls.io/repos/github/octopusinvitro/morphio-scraper-australian-parliament/badge.svg?branch=master)](https://coveralls.io/github/octopusinvitro/morphio-scraper-australian-parliament?branch=master)
 
 # Morph.io scraper :: Australian parliament
 
@@ -51,15 +51,16 @@ $ rbenv rehash
 
 ### Folder structure
 
+* `bin `: Executables
 * `lib `: Sources
 * `spec`: Tests
+* `spec/fixtures`: html pages and data for tests
 
 
 ### To initialise the project
 
 ```bash
 $ bundle install
-$ bundle exec rake
 ```
 
 
@@ -77,7 +78,7 @@ and then run the tests:
 $ bundle exec rspec
 ```
 
-In the tests, the test url points to a page served by a local server that has a pagination of three pages with 50 members in each page.
+In the tests, the `TEST_URL` points to a page served by a local server. It has a pagination of three pages with 50 members in each page.
 
 **Caveat:** Because the `ScraperWiki` gem doesn't allow to choose where to save the database file or how to name it, it will always produce a `data.sqlite` file in the root directory when the tests are run and when the production code is run. I have to find a way to mock the `ScraperWiki` module, but for now I am using the ugly workaround:
 
