@@ -24,7 +24,7 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     httpclient (2.8.0)
-    json (2.2.0)
+    json (2.5.1)
     mechanize (2.7.4)
       domain_name (~> 0.5, >= 0.5.1)
       http-cookie (~> 1.0)
